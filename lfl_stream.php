@@ -100,6 +100,14 @@ if ($handle) {
         $time_end = microtime(true);
         $time = $time_end - $time_start;
     }
+    if($cont > 0){
+	  $dao->ejecutarQuery($stSQL);
+	  $util->outputProgress($i, $cantidadLineas, $_FILES['uploaded_file']['name'],$util->tsFromMicrotime($time));
+	  ob_flush();
+	  flush();
+	  $cont = 0;
+	  $stSQL = "";    
+    }
     fclose($handle);
     ob_end_flush();
     unset($dao);
