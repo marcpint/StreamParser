@@ -39,6 +39,17 @@ include realpath(dirname(__FILE__)).'/dao.php';
 $util = new clsUtil();
 $dao  = new dao("postgresql_local");
 
+$directorio = "tmp/";
+$archivo = $directorio . basename($_FILES["uploaded_file"]["name"]);
+
+
+if (move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], $archivo))
+{
+
+}else{
+        echo "Error: No se pudo copiar el archivo.";
+        die();
+}
 
 
 $time_start = microtime(true);
